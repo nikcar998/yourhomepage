@@ -1,0 +1,28 @@
+.newsImage{
+    width:5rem;
+    height:5rem;
+    padding:1px;
+}
+.cardTitle{
+    margin-top:1%;
+    font-size:150%
+}
+.ArticlesCardsContainer{
+    display:flex;
+    flex-direction: row;
+    border-bottom: 1px solid white;
+}
+.leftContainer{
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    border-right:1px solid white;
+}
+p{
+    margin-bottom:1px
+}
+
+.hrTitle{
+    color:white;
+    width:20%;
+}
