@@ -7,7 +7,7 @@ function News(){
     const [result, setResult]=useState([])
     function getValues(){
         const selected='us'
-        const key='d2eb5fc8741647b3b0be376ab59c7d69';
+        const key='';
         var url = 'http://newsapi.org/v2/top-headlines?' +
                 'country=' + selected + '&' +
                 'apiKey='+ key;
