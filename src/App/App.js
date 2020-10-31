@@ -1,17 +1,18 @@
 import React from 'react';
 import './App.css';
-import Header from "../Header/Header"
-import News from "../News/News"
+import {ResultProvider} from "../ResultContext";
+import WeatherToggle from "../WeatherToggle/WeatherToggle"
 import SearchSide from "../SearchSide/SearchSide"
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="contentContainer">
-          <SearchSide />
-          <News />
+    <ResultProvider>
+      <div className="App">
+            <WeatherToggle />
+            <ResultProvider>
+            <SearchSide />
+            </ResultProvider>
       </div>
-    </div>
+    </ResultProvider>
   );
 }
 

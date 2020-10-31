@@ -1,0 +1,16 @@
+.weatherToggle{
+    position:absolute;
+    top:50;
+    left:89.5%;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.umbrellaToggler{
+    width:20%;
+    border:1px solid black;
+    background-color: black;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}

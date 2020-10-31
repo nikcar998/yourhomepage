@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react"
 import "./Weather.css";
-import axios from "axios";
 import _ from "lodash";
-function Weather(){
+import Axios from "axios";
+function Weather(props){
     const [iconURL, setIconURL]=useState('');
     const [tempcontent, setTempcontent]=useState('')
 function geoFindMe() {
@@ -14,17 +14,17 @@ function geoFindMe() {
   
      //utilizzo la chiave e le coordinate per accedere all'api
       var key = '';
-      fetch('https://api.openweathermap.org/data/2.5/weather?lat='+ latitude +'&lon='+ longitude +'&appid='+ key)  
-        .then(function(resp) { return resp.json() }) // Convert data to json
-          .then(function(data) {
+      const url='https://api.openweathermap.org/data/2.5/weather?lat='+ latitude +'&lon='+ longitude +'&appid='+ key
+      Axios.get(url)  
+        .then(function(data) {
             console.log(data);
            
             //def. meteo
-            const iconCode= _.get(data,"weather[0].icon","not found"); 
+            const iconCode= _.get(data,"data.weather[0].icon","not found"); 
             setIconURL("http://openweathermap.org/img/wn/"+iconCode+"@2x.png");
 
             //def. temp
-             const temp1 =_.get(data,"main.temp","not found")
+             const temp1 =_.get(data,"data.main.temp","not found")
              if(temp1!=="not found"){
             const temp2=(Number(temp1)- 273.15).toFixed(2);
             setTempcontent(temp2)
@@ -55,12 +55,11 @@ function geoFindMe() {
   useEffect(() => {
     geoFindMe()
   }, [])
-  
+  const opChange1=props.opChange
   return(
-      <div className="weatherContainer">
+      <div style={opChange1} className="weatherContainer">
           <p className="weatherp" >Weather:{iconURL!=='not supported'||iconURL!=='disabled'?<img src={iconURL} alt="weather" className="weatherImage"/>:iconURL}</p>
-          <p>Temp:{tempcontent} </p>
-          
+          <p>Temp:{tempcontent}°C</p>    
       </div>
   )
 

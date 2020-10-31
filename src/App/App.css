@@ -1,18 +1,3 @@
 .App{
-    padding:0;
-    margin:0;
-}
-body{
-    padding:0;
-    margin:0;
-    overflow: hidden;
-}
-
-.contentContainer{
-    display:flex;
-    flex-direction:row;
-    padding:0
-}
-.searchSide{
-    padding:0
+    font-family: 'Overpass';
 }

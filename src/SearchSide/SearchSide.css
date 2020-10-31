@@ -1,11 +1,31 @@
 .SearchSideContainer{
-    width: 80vw;
-    height: 90vh;
+    height: 33vh;
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
-.searchChoser{
-    display: inline-block;
+.btn2{
+    height:1.5rem;
+    width:3rem;
+    display:inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size:70%;
+    margin-left:1px;
+}
+
+.btn1{
+    height:2rem;
+    width:3rem;
+    font-size:80%;
+    display:inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.btn2Container{
+    text-align:center;
+    margin-top:1.5%;
 }

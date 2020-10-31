@@ -1,0 +1,36 @@
+.unsplashLogo{
+    max-width:25rem;
+    height: auto;
+    margin:5px;
+    margin-top:3%;
+}
+
+.unsplashSearch{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.custom-group{
+    width:100%;
+    display:flex;
+}
+.custom-form{
+    width:29%;
+}
+.custom-control{
+    height:90%;
+}
+
+.photoShow{
+    margin-top:2%;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: center;
+}
+.photo{
+    margin:8px;
+    max-width:26rem;
+    min-width:20rem;
+    height:auto;
+}
