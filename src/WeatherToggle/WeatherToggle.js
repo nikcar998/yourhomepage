@@ -7,8 +7,6 @@ function Header() {
     function clickHandler(){
         if(opChange.opacity == 0){
             setOpChange({opacity:1})
-            setTimeout(() => setOpChange({opacity:0.8}),5000 )
-            setTimeout(() => setOpChange({opacity:0.4}),5600 )
             setTimeout(() => setOpChange({opacity:0.0}),5900 )
         }else{
             setOpChange({opacity:0}) 

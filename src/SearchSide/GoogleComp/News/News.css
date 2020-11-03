@@ -7,11 +7,11 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-
+    width:100vw;
 }
 .newsHeader p{
     display:inline-flex;
-    margin-left:37%;
+    margin-left:32%;
 }
 .newsSide{
     font-size:80%;

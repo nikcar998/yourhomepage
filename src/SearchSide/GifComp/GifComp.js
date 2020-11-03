@@ -2,21 +2,22 @@ import React,{useState} from 'react'
 import './GifComp.css'
 import Axios from 'axios'
 import _ from 'lodash'
-
+import GifShow from './GifShow/GifShow'
 function UnsplashComp(){
     const [value, setValue]=useState('');
     const [result, setResult]=useState([]);
     const [bvalue, setBvalue]=useState(true);
+    const [btnText, setBtnText]=useState('My Gif')
+    const [gifForIteration, setgifForIteration]=useState(JSON.parse(localStorage.getItem('myGif')));
     const key = ''
-    let gifForIteration = localStorage.getItem('myGif')
-    gifForIteration= JSON.parse(gifForIteration);
-    console.log(gifForIteration)
     function handleSubmit(event){
         event.preventDefault();
         Axios.get("http://api.giphy.com/v1/gifs/search?q="+ value +"&api_key=" +key )
-        .then(data =>{
+         .then(data =>{
           console.log(data.data.data);
           setResult(_.get(data,"data.data",[]))
+          setBtnText('My Gif')
+          setBvalue(true)
         }).catch(error =>{
           console.log(error);
         })
@@ -27,28 +28,24 @@ function UnsplashComp(){
         setValue(valued);
        }
 
-       function clickHandler(gifs){
-        let gif = localStorage.getItem('myGif')
-        gif= JSON.parse(gif);
-        if(gif!==null){
-            gif.push(gifs)
-            localStorage.setItem('myGif', JSON.stringify(gif))
-            console.log(gif)
-        }else{
-            localStorage.setItem('myGif', JSON.stringify(gifs))
-            console.log(gif)
-        }
-       }
         function btnFunction(){
-            if(bvalue){
-              let gif = localStorage.getItem('myGif')
-              gif= JSON.parse(gif);
-              setResult(gif);
+            if(bvalue&&gifForIteration!==null){
               setBvalue(!bvalue);
+              setBtnText('Search');
+              let gif = localStorage.getItem('myGif')
+              gif=JSON.parse(gif)
+              setResult(gif);
+              console.log(gif);
             }else{
               setBvalue(!bvalue)
+              setResult([])
+              setBtnText('My Gif');
             }
           }
+        function btnFunction1(){
+             localStorage.removeItem("myGif"); 
+             setResult([])
+        }
 
 
     return(
@@ -64,16 +61,18 @@ function UnsplashComp(){
                 <button type="submit" className="btn btn-dark btn1">Search</button>
                 </div>
             </form>
-            <button className='btn btn-light' onClick={btnFunction} >My Gif</button> 
+            <div className="gifBtnContainer">
+              <button className='btn btn-light' onClick={btnFunction} >{btnText}</button> 
+              <button className='btn btn-danger' onClick={btnFunction1} >Cancel All</button>
+            </div>
             <div className="gifShow" >
-                {(result!==null)?(result.map((data, index)=>(
-                    <div  key={index + _.get(data,"images.original.url","")} className='gifContainer'>
-                    <img className="gif" src={_.get(data,"images.original.url","")} />
-                    <div className="middle">
-                        <button className="btn btn-success" onClick={()=>clickHandler(data)}>Save</button>
-                    </div>
-                    </div>))): null
-                }
+                {((result!==null)?result.map((data, index)=>(
+                    (data!==null)&&<GifShow key={index + _.get(data,"slug",Math.floor(Math.random()*100000)) } 
+                            gifForIteration={gifForIteration}
+                             data={data}
+                             bvalue={bvalue}
+                             setResult={setResult}
+                     />)):null)}
             </div>
         </div>
     )

@@ -1,24 +1,22 @@
 import React,{useEffect, useContext} from 'react';
 import "./ArticlesShow.css";
-import _ from "lodash"
+import _ from "lodash";
+import clickHandler,{cancel,catchValue} from '../../../../commonFunctions/commonFunctions'
 function ArticlesShow(props){
       const article=props.article
 
       const titled=_.get(article,'title','not found')
       const urlToImage=article.urlToImage
-      const dated=_.get(article,'publishedAt','notFound')
       const url=_.get(article,'url','not found')
+      const y ='myNews'
     //qui modifico il formato della data ricevuto dall'api e lo rendo più leggibile
-    const ts = new Date(dated);
-    const dated1=ts.toDateString();
 
-      function clickHandler(articles){
-            let news = localStorage.getItem('myNews')
-            news= JSON.parse(news);
-            news.push(article)
-            localStorage.setItem('myNews', JSON.stringify(news))
-            console.log(news)
-      }
+    function cancel1(a,b){
+      cancel(a,b);
+      const setResult=props.setResult;
+      var z = catchValue(b)
+      setResult(z)
+    }
 
    return ( 
       <div className="ArticlesCardsContainer" >
@@ -27,7 +25,8 @@ function ArticlesShow(props){
             <hr className='hrTitle' />
             <p className="cardTitle">{titled}</p>
             </a>
-      <button className='btn btn-secondary' onClick={()=>clickHandler(article)} >Save</button>
+            {(props.bvalue)?<button className="btn btn-success" onClick={()=>clickHandler(props.article,y)}>Save</button>
+                :<button className="btn btn-danger" onClick={()=>cancel1(props.article.url,y)}>cancel</button>}
       </div>
    )}
 

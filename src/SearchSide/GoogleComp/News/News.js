@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from "react"
 import "./News.css";
-import ResultContext from '../../../ResultContext';
 import Axios from "axios";
 import _ from "lodash"
 import ArticlesShow from "./ArticlesShow/ArticlesShow"
@@ -38,6 +37,14 @@ function News(){
           setBvalue(!bvalue)
         }
       }
+      function btnFunction1(){
+        localStorage.removeItem("myNews"); 
+        let news = localStorage.getItem('myNews')
+        news= JSON.parse(news);
+        if(result===news){
+        setResult([])
+      }
+   }
 
       useEffect(() => {
         getValues()
@@ -46,14 +53,17 @@ function News(){
         <div className="newsSide">
             <div className="newsHeader">
             <button className='btn btn-light' onClick={btnFunction} >{textVar}</button>
+            <button className='btn btn-danger' onClick={btnFunction1} >Cancel All</button>
                 <p>News</p>
             </div>
             <div className="articlesMap">
-            {result.map((article, index) => ( 
-      _.get(article,'urlToImage',0) !== 0?<ArticlesShow
-      key={index + _.get(article,'url',index)}
-      article={article}
-      /> : <p>An error has occured or the book has not been found, please try again</p> ))}
+            {(result!==null)?result.map((article, index) => ( 
+              _.get(article,'urlToImage',0) !== 0?<ArticlesShow
+              key={index + _.get(article,'url',index)}
+              article={article}
+              bvalue={bvalue}
+              setResult={setResult}
+              />:null)):null}
             </div>
         </div>
     )

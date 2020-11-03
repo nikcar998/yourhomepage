@@ -24,7 +24,7 @@ function geoFindMe() {
             setIconURL("http://openweathermap.org/img/wn/"+iconCode+"@2x.png");
 
             //def. temp
-             const temp1 =_.get(data,"data.main.temp","not found")
+             const temp1 =_.get(data,"data.main.temp","error")
              if(temp1!=="not found"){
             const temp2=(Number(temp1)- 273.15).toFixed(2);
             setTempcontent(temp2)
@@ -39,14 +39,14 @@ function geoFindMe() {
   //def. risposta all'errore di geolocalizzazione
     function error() {
       console.log('Unable to retrieve your location');
-      setIconURL('disabled');
-      setTempcontent("disabled")
+      setIconURL('error');
+      setTempcontent("error")
     }
     //codice che fa avviare la funzione richiedendo al browser se è accessibile la geolocalizzazione
     if(!navigator.geolocation) {
       console.log('Geolocation is not supported by your browser');
-      setIconURL('not supported');
-      setTempcontent("not supported")
+      setIconURL('error');
+      setTempcontent("error");
     } else {
       navigator.geolocation.getCurrentPosition(success, error);
     }
@@ -58,7 +58,7 @@ function geoFindMe() {
   const opChange1=props.opChange
   return(
       <div style={opChange1} className="weatherContainer">
-          <p className="weatherp" >Weather:{iconURL!=='not supported'||iconURL!=='disabled'?<img src={iconURL} alt="weather" className="weatherImage"/>:iconURL}</p>
+          <p className="weatherp" >Weather:{iconURL!=='error'?<img src={iconURL} alt="weather" className="weatherImage"/>:iconURL}</p>
           <p>Temp:{tempcontent}°C</p>    
       </div>
   )

@@ -28,9 +28,3 @@
     flex-flow:row wrap;
     justify-content: center;
 }
-.photo{
-    margin:8px;
-    max-width:26rem;
-    min-width:20rem;
-    height:auto;
-}

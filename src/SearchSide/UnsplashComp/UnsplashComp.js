@@ -2,10 +2,13 @@ import React,{useState} from 'react'
 import './UnsplashComp.css'
 import Axios from 'axios'
 import _ from 'lodash'
-
+import ImagesShow from "./imagesShow/ImagesShow"
 function UnsplashComp(){
     const [value, setValue]=useState('');
     const [result, setResult]=useState([])
+    const [bvalue, setBvalue]=useState(true);
+    const [btnText, setBtnText]=useState('My Images')
+
     const clientId = ''
     function handleSubmit(event){
         event.preventDefault();
@@ -13,6 +16,8 @@ function UnsplashComp(){
         .then(data =>{
           console.log(data.data);
           setResult(_.get(data,"data.results",'error'))
+          setBtnText('My Gif')
+          setBvalue(true)
         }).catch(error =>{
           console.log(error);
         })
@@ -22,6 +27,25 @@ function UnsplashComp(){
         let valued = event.target.value;
         setValue(valued);
        }
+
+       function btnFunction(){
+        if(bvalue){
+          setBvalue(!bvalue);
+          setBtnText('Search');
+          let gif = localStorage.getItem('myImages')
+          gif=JSON.parse(gif)
+          setResult(gif);
+          console.log(gif);
+        }else{
+          setBvalue(!bvalue)
+          setResult([])
+          setBtnText('My Images');
+        }
+      }
+    function btnFunction1(){
+         localStorage.removeItem("myImages"); 
+         setResult([])
+    }
     return(
         <div className="unsplashSearch">
             <img className='unsplashLogo' src="images/unsplashLogo.jpeg"></img>
@@ -35,10 +59,17 @@ function UnsplashComp(){
                 <button type="submit" className="btn btn-dark btn1">Search</button> 
                 </div>
             </form>
+            <div className="gifBtnContainer">
+                <button className='btn btn-light' onClick={btnFunction} >{btnText}</button> 
+                <button className='btn btn-danger' onClick={btnFunction1} >Cancel all</button>
+            </div>
             <div className="photoShow" >
-                {result.map((data)=>(
-                    <img className="photo" src={data.urls.small} />
-                ))}
+                {((result!==null)?result.map((data, index)=>(
+                    (data!==null)&&<ImagesShow key={index + _.get(data,"urls.small",Math.floor(Math.random()*100000)) } 
+                             data={data}
+                             bvalue={bvalue}
+                             setResult={setResult}
+                     />)):null)}
             </div>
         </div>
     )
