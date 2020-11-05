@@ -3,11 +3,16 @@ import "./News.css";
 import Axios from "axios";
 import _ from "lodash"
 import ArticlesShow from "./ArticlesShow/ArticlesShow"
+
+//questo componente sarà il contenitore delle varie news
 function News(){
   const [result, setResult] =useState([]);
   const [bvalue, setBvalue]=useState(true);
   const [textVar, setTextVar]=useState('My News')
 
+  
+//attraverso questa funzione avviene la ricerca dei valori all'interno dell'api 
+//successuvamente si passano i valori all'array "result" che servirà poi nella funzione "result.map"
     function getValues(){
         const selected='us'
         const key='';
@@ -23,7 +28,8 @@ function News(){
          console.log(error)
        })
       }
-
+//attraverso questa funzione passo i valori contenuti in localStorage all'interno dell'array
+//result, nel caso in cui i valori siano già stati caricati nell'array utilizzo la funzione "getValues"
       function btnFunction(){
         if(bvalue){
           let news = localStorage.getItem('myNews')
@@ -37,13 +43,10 @@ function News(){
           setBvalue(!bvalue)
         }
       }
+        //cancella ogni singolo valore contenuto in "myNews"
       function btnFunction1(){
         localStorage.removeItem("myNews"); 
-        let news = localStorage.getItem('myNews')
-        news= JSON.parse(news);
-        if(result===news){
-        setResult([])
-      }
+        getValues()
    }
 
       useEffect(() => {

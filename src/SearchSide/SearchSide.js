@@ -3,6 +3,9 @@ import "./SearchSide.css"
 import GoogleComp from './GoogleComp/GoogleComp'
 import UnsplashComp from './UnsplashComp/UnsplashComp'
 import GifComp from './GifComp/GifComp'
+
+//questo componente mostra tre pulsanti che danno la possibilità di scegliere
+//quale componente mostrare
 function SearchSide(){
     const [searchChosed, setSearchChosed]=useState(<GoogleComp />);
     

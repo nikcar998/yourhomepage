@@ -2,7 +2,9 @@ import React,{useState} from 'react';
 import "./WeatherToggle.css";
 import Weather from "./Weather/Weather"
 
-function Header() {
+//questo componente mostra l'immagine di un obrello che se cliccato fornisce il meteo locale attraverso
+//il componente 'Weather'
+function WeatherToggle() {
     const [opChange, setOpChange]=useState({opacity:0})
     function clickHandler(){
         if(opChange.opacity == 0){
@@ -20,4 +22,4 @@ function Header() {
     )
 }
 
-export default Header
+export default WeatherToggle

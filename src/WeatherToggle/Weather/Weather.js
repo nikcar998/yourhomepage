@@ -2,6 +2,9 @@ import React, {useState, useEffect} from "react"
 import "./Weather.css";
 import _ from "lodash";
 import Axios from "axios";
+
+//questo componente ricerca la posizione dell'utente, ne cerca il meteo attraverso l'api di openweather
+//e poi fornisce un piccolo div in ritorno la cui 'opacity' è determinata dal componente 'weatherToggle'
 function Weather(props){
     const [iconURL, setIconURL]=useState('');
     const [tempcontent, setTempcontent]=useState('')
