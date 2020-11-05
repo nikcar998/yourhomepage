@@ -47,6 +47,7 @@ function News(){
       function btnFunction1(){
         localStorage.removeItem("myNews"); 
         getValues()
+        setBvalue(true)
    }
 
       useEffect(() => {
