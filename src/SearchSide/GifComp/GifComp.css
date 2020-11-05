@@ -19,3 +19,9 @@
     display:flex;
     flex-flow:row wrap;
 }
+@media only screen and (max-width: 600px) {
+    .giphyLogo{
+        max-width:20rem;
+    }
+  }
+   

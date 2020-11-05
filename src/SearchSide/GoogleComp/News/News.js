@@ -54,7 +54,6 @@ function News(){
             <div className="newsHeader">
             <button className='btn btn-light' onClick={btnFunction} >{textVar}</button>
             <button className='btn btn-danger' onClick={btnFunction1} >Cancel All</button>
-                <p>News</p>
             </div>
             <div className="articlesMap">
             {(result!==null)?result.map((article, index) => ( 

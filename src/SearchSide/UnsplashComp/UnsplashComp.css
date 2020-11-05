@@ -1,5 +1,5 @@
 .unsplashLogo{
-    max-width:25rem;
+    max-width:28rem;
     height: auto;
     margin:5px;
     margin-top:3%;
@@ -28,3 +28,25 @@
     flex-flow:row wrap;
     justify-content: center;
 }
+@media only screen and (max-width: 450px) {
+   .unsplashLogo{
+       max-width:20rem;
+   }
+   .custom-form{
+        width:80%;
+    }
+    .custom-group{
+        width:300%;
+    }
+  }
+  @media screen and (min-width: 450px) and (max-width: 1000px) {
+    .unsplashLogo{
+        max-width:23rem;
+    }
+    .custom-form{
+         width:50%;
+     }
+     .custom-group{
+         width:100%;
+     }
+   }

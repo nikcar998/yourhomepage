@@ -1,6 +1,7 @@
 .ImagesContainer{
     max-width:26rem;
     min-width:20rem;
+    height:auto;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -27,3 +28,11 @@
     text-align: center;
     z-index:1;
   }
+  @media only screen and (max-width: 500px) {
+    .ImagesContainer{
+        min-width:10rem;
+        max-width:15rem;
+        margin:2px;
+    }
+  }
+   

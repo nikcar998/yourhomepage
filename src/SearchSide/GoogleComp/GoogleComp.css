@@ -41,6 +41,20 @@
 }
 .serchInput{
     width:78%;
-    border-radius:4;
+    border-radius:4px;
 }
 
+@media only screen and (max-width: 400px) {
+    .searchText{
+        font-size:600%;
+        margin-top:2%;
+    }
+    .serchInput{
+        margin-bottom:5%;
+        margin-left:2px;
+    }
+    .SearchSideContainer{
+        width:100%;
+        margin:0
+    }
+   }
